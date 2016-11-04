@@ -44,7 +44,7 @@ RUN chmod -R 755 /app/onlyoffice/*.sh
 VOLUME ["/var/log/onlyoffice"]
 VOLUME ["/var/www/onlyoffice/Data"]
 
-EXPOSE 80 443 5222 9865 9888 9866 9871 9882 5280
+EXPOSE 80 443 5222 9865 9888 9866 9871 9882 5280 22
 
 
 CMD exec dumb-init bash --rcfile /app/onlyoffice/run-community-server.sh -i;
