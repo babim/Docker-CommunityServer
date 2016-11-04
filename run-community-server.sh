@@ -77,6 +77,7 @@ cp ${SYSCONF_TEMPLATES_DIR}/nginx/onlyoffice-init ${NGINX_CONF_DIR}/onlyoffice
 rm -f /etc/nginx/conf.d/*.conf
 
 rsyslogd 
+service ssh start
 service nginx start
 
 if [ ${ONLYOFFICE_SERVICES_INTERNAL_HOST} ]; then
