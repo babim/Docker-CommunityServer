@@ -1,3 +1,5 @@
+## babim/onlyoffice-community-server without mysql-server
+
 * [Overview](#overview)
 * [Functionality](#functionality)
 * [Recommended System Requirements](#recommended-system-requirements)
@@ -19,7 +21,6 @@
 * [User Feedback and Support](#user-feedback-and-support)
 
 ## Overview
-babim/onlyoffice-community-server without mysql-server
 
 ONLYOFFICE Community Server is a free open source collaborative system developed to manage documents, projects, customer relationship and email correspondence, all in one place.
 
