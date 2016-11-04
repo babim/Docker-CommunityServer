@@ -1,5 +1,4 @@
-FROM ubuntu:14.04
-MAINTAINER Ascensio System SIA <support@onlyoffice.com>
+FROM babim/ubuntubase:14.04
 
 ARG RELEASE_DATE="2016-06-21"
 ARG RELEASE_DATE_SIGN=""
@@ -27,11 +26,13 @@ RUN echo "${SOURCE_REPO_URL}" >> /etc/apt/sources.list && \
     echo "deb http://nginx.org/packages/mainline/ubuntu/ trusty nginx" >> /etc/apt/sources.list.d/nginx.list && \
     echo "deb-src http://nginx.org/packages/mainline/ubuntu/ trusty nginx" >> /etc/apt/sources.list.d/nginx.list && \	
     add-apt-repository -y ppa:builds/sphinxsearch-rel22 && \
+    apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db && \
+    add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://ftp.kaist.ac.kr/mariadb/repo/10.1/ubuntu trusty main' && \
     echo "Start=No" >> /etc/init.d/sphinxsearch && \
     apt-get -y update && \
     apt-get install --force-yes -yq mono-complete ca-certificates-mono && \
     echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d && \
-    apt-get install --force-yes -yq dumb-init  mysql-server mysql-client sphinxsearch onlyoffice-communityserver htop nano dnsutils && \
+    apt-get install --force-yes -yq dumb-init  mariadb-client sphinxsearch onlyoffice-communityserver htop nano dnsutils && \
     rm -rf /var/lib/apt/lists/*
 
 
@@ -42,9 +43,8 @@ RUN chmod -R 755 /app/onlyoffice/*.sh
 
 VOLUME ["/var/log/onlyoffice"]
 VOLUME ["/var/www/onlyoffice/Data"]
-VOLUME ["/var/lib/mysql"]
 
-EXPOSE 80 443 5222 3306 9865 9888 9866 9871 9882 5280
+EXPOSE 80 443 5222 9865 9888 9866 9871 9882 5280
 
 
 CMD exec dumb-init bash --rcfile /app/onlyoffice/run-community-server.sh -i;
