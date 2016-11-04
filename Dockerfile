@@ -1,4 +1,4 @@
-FROM babim/ubuntubase:14.04
+FROM babim/ubuntubase:14.04.ssh
 
 ARG RELEASE_DATE="2016-06-21"
 ARG RELEASE_DATE_SIGN=""
