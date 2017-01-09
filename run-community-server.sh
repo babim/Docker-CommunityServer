@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# ssh
+if [ -f "/runssh.sh" ]; then /runssh.sh; fi
+
 SERVER_HOST="";
 ONLYOFFICE_DIR="/var/www/onlyoffice"
 ONLYOFFICE_DATA_DIR="${ONLYOFFICE_DIR}/Data"
