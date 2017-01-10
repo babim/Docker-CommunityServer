@@ -68,7 +68,7 @@ This command will install ONLYOFFICE Community Server and all the dependencies i
 
 To make Docker auto-restart containers on reboot, please use the --restart=always in the docker run command:
 
-	sudo docker run -i -t -d -p 80:80 --restart=always onlyoffice/communityserver
+	sudo docker run -i -t -d -p 80:80 --restart=always babim/onlyoffice-community-server
 
 ### Storing Data
 
@@ -82,7 +82,7 @@ To get access to your data from outside the container, you need to mount the vol
     sudo docker run -i -t -d -p 80:80 \
         -v /app/onlyoffice/CommunityServer/logs:/var/log/onlyoffice  \
         -v /app/onlyoffice/CommunityServer/data:/var/www/onlyoffice/Data  \
-        -v /app/onlyoffice/CommunityServer/mysql:/var/lib/mysql  onlyoffice/communityserver
+        -v /app/onlyoffice/CommunityServer/mysql:/var/lib/mysql  babim/onlyoffice-community-server
 
 Storing the data on the host machine allows you to easily update ONLYOFFICE once the new version is released without losing your data.
 
@@ -100,7 +100,7 @@ If you have an external MySQL server installed on your machine, execute the foll
 	-e MYSQL_SERVER_DB_NAME="onlyoffice" \
 	-e MYSQL_SERVER_USER="usr_onlyoffice" \
 	-e MYSQL_SERVER_PASS="onlyoffice123" \
-	onlyoffice/communityserver
+	babim/onlyoffice-community-server
 ```
 
 ### Running ONLYOFFICE Community Server on Different Port
@@ -119,7 +119,7 @@ The container ports to be exposed for **incoming connections** are the folloing:
 
 You can expose ports by specifying the '-p' option in the docker run command.
 
-    sudo docker run -i -t -d -p 80:80  -p 443:443  -p 5222:5222   onlyoffice/communityserver
+    sudo docker run -i -t -d -p 80:80  -p 443:443  -p 5222:5222   babim/onlyoffice-community-server
 
 For **outgoing connections** you need to expose the following ports:
 
@@ -138,7 +138,7 @@ Additional ports to be exposed for the mail client correct work:
 ### Running ONLYOFFICE Community Server using HTTPS
 
         sudo docker run -i -t -d -p 80:80  -p 443:443 \
-        -v /app/onlyoffice/CommunityServer/data:/var/www/onlyoffice/Data  onlyoffice/communityserver
+        -v /app/onlyoffice/CommunityServer/data:/var/www/onlyoffice/Data  babim/onlyoffice-community-server
 
 Access to the onlyoffice application can be secured using SSL so as to prevent unauthorized access. While a CA certified SSL certificate allows for verification of trust via the CA, a self signed certificates can also provide an equal level of trust verification as long as each client takes some additional steps to verify the identity of your website. Below the instructions on achieving this are provided.
 
@@ -240,7 +240,7 @@ Than launch containers on it using the 'docker run --net onlyoffice' option:
 sudo docker run --net onlyoffice -i -t -d --restart=always --name onlyoffice-document-server \
 	-v /app/onlyoffice/DocumentServer/data:/var/www/onlyoffice/Data \
 	-v /app/onlyoffice/DocumentServer/logs:/var/log/onlyoffice \
-	onlyoffice/documentserver
+	babim/onlyoffice-community-server
 ```
 
 **STEP 2**: Install ONLYOFFICE Mail Server. 
@@ -270,7 +270,7 @@ sudo docker run --net onlyoffice -i -t -d --restart=always --name onlyoffice-com
 	-v /app/onlyoffice/DocumentServer/data:/var/www/onlyoffice/DocumentServerData \
 	-e DOCUMENT_SERVER_PORT_80_TCP_ADDR=onlyoffice-document-server \
 	-e MAIL_SERVER_DB_HOST=onlyoffice-mail-server \
-	onlyoffice/communityserver
+	babim/onlyoffice-community-server
 ```
 
 Alternatively, you can use an automatic installation script to install the whole ONLYOFFICE Community Edition at once. For the mail server correct work you need to specify its hostname 'yourdomain.com'.
@@ -316,7 +316,7 @@ where
 	sudo docker run -i -t -d -p 80:80 \
 	-v /app/onlyoffice/CommunityServer/logs:/var/log/onlyoffice  \
 	-v /app/onlyoffice/CommunityServer/data:/var/www/onlyoffice/Data  \
-	-v /app/onlyoffice/CommunityServer/mysql:/var/lib/mysql  onlyoffice/communityserver
+	-v /app/onlyoffice/CommunityServer/mysql:/var/lib/mysql  babim/onlyoffice-community-server
 
 
 ## Project Information
