@@ -740,3 +740,7 @@ if [ "${ONLYOFFICE_MODE}" == "SERVER" ]; then
 		echo "FINISH";
 	fi
 fi
+
+export DNSSERVER=${DNSSERVER:-8.8.8.8}
+# Set DNS Server to localhost
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
