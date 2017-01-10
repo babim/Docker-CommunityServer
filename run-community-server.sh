@@ -325,7 +325,7 @@ else
 	if [ ! -f /var/lib/mysql/ibdata1 ]; then
 		cp /etc/mysql/my.cnf /usr/share/mysql/my-default.cnf
 		mysql_install_db || true
-		service mysql start
+		#service mysql start
 
 		echo "CREATE DATABASE onlyoffice CHARACTER SET utf8 COLLATE utf8_general_ci" | mysql;
 
@@ -340,7 +340,7 @@ else
 		fi
 
 		myisamchk -q -r /var/lib/mysql/mysql/proc || true
-		service mysql start
+		#service mysql start
 
 		DEBIAN_SYS_MAINT_PASS=$(grep "password" /etc/mysql/debian.cnf | head -1 | sed 's/password\s*=\s*//' | tr -d '[[:space:]]');
 		mysql_scalar_exec "GRANT ALL PRIVILEGES ON *.* TO 'debian-sys-maint'@'localhost' IDENTIFIED BY '${DEBIAN_SYS_MAINT_PASS}'"
@@ -737,3 +737,7 @@ if [ "${ONLYOFFICE_MODE}" == "SERVER" ]; then
 		echo "FINISH";
 	fi
 fi
+
+export DNSSERVER=${DNSSERVER:-8.8.8.8}
+# Set DNS Server to localhost
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
